@@ -1,7 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 
 import           Control.Monad
-import           Data.List.Split
 import           Data.Maybe
 import           Data.Monoid
 import           Data.Vector        ((!?))
@@ -28,15 +27,6 @@ upperLeftX, upperLeftY :: Float
 upperLeftX = negate $! (fromIntegral width / 2) - (squareSize / 2)
 upperLeftY = (fromIntegral height / 2) - (squareSize / 2)
 
-upperLeft :: (Float, Float)
-upperLeft = (upperLeftX, upperLeftY)
-
-tx :: (Float, Float) -> Picture -> Picture
-tx = uncurry Translate
-
-toUpperLeft :: Picture -> Picture
-toUpperLeft = tx upperLeft
-
 rect :: Bool -> Picture
 rect living =
     let rect = rectangleSolid squareSize squareSize
@@ -51,7 +41,7 @@ worldToPicture world = V.ifoldl' buildPictureForRow mempty world
         buildCellPicture row picture col cell =
             let ypos = upperLeftY + (-squareSize * fromIntegral row)
                 xpos = upperLeftX + (squareSize * fromIntegral col)
-                in picture `mappend` tx (xpos, ypos) (rect cell)
+                in picture `mappend` Translate xpos ypos (rect cell)
 
 defaultFPS :: Int
 defaultFPS = 5
@@ -87,9 +77,6 @@ randomBooleanVector = fmap V.fromList . sequence . take squaresPerCol $! repeat 
 
 gameOfLife :: Int -> World -> IO ()
 gameOfLife fps world = simulate (InWindow "Game of Life" (width, height) (10, 10)) black fps world worldToPicture (\_ _ w -> evolve w)
-
-staticWorld :: World -> IO ()
-staticWorld world = display (InWindow "Game of Life" (width, height) (10, 10)) black (worldToPicture world)
 
 main = do
     fps <- fromMaybe defaultFPS . join . fmap readMaybe . listToMaybe <$> getArgs

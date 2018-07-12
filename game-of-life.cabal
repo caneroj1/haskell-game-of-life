@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8618bcee7cc6808230981233791afd68d4fcdb718f2539013697c3088334aee2
+-- hash: 2dfeeae71ab9bb66e173fec434815ed874574ba588e0cce5b1ccf692d6fde627
 
 name:           game-of-life
 version:        0.1.0.0
@@ -35,7 +35,6 @@ executable game-of-life
       base >=4.7 && <5
     , gloss
     , random
-    , split
     , vector
   other-modules:
       Paths_game_of_life
