@@ -1,0 +1,31 @@
+name:                game-of-life
+version:             0.1.0.0
+github:              caneroj1/game-of-life
+license:             BSD3
+author:              "Joseph Canero"
+maintainer:          "jmc41493@gmail.com"
+copyright:           "Copyright (c) 2018 Joseph Canero"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            Conway's Game of Life
+
+description:         Please see the README on Github at <https://github.com/caneroj1/game-of-life#README.md>
+
+dependencies:
+- base >= 4.7 && < 5
+- gloss
+- random
+- split
+- vector
+
+executables:
+  game-of-life:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N

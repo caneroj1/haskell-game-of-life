@@ -1,0 +1,42 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8618bcee7cc6808230981233791afd68d4fcdb718f2539013697c3088334aee2
+
+name:           game-of-life
+version:        0.1.0.0
+synopsis:       Conway's Game of Life
+description:    Please see the README on Github at <https://github.com/caneroj1/game-of-life#README.md>
+homepage:       https://github.com/caneroj1/game-of-life#readme
+bug-reports:    https://github.com/caneroj1/game-of-life/issues
+author:         Joseph Canero
+maintainer:     jmc41493@gmail.com
+copyright:      Copyright (c) 2018 Joseph Canero
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    ChangeLog.md
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/caneroj1/game-of-life
+
+executable game-of-life
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , gloss
+    , random
+    , split
+    , vector
+  other-modules:
+      Paths_game_of_life
+  default-language: Haskell2010
